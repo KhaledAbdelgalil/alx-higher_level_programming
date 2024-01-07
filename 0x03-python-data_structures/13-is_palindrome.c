@@ -13,15 +13,16 @@ listint_t* reverse_list(listint_t * list)
 	return (prev);
 }
 int compare_lists(listint_t* list1, listint_t* list2) {
-    while (list1 != NULL && list2 != NULL) {
-        if (list1->n != list2->n) {
-            return 0; // Not a palindrome
-        }
-        list1 = list1->next;
-        list2 = list2->next;
-    }
-
-    return 1; // Palindrome
+	while (list1 != NULL && list2 != NULL)
+	{
+		if (list1->n != list2->n)
+		{
+			return (0);
+		}
+		list1 = list1->next;
+		list2 = list2->next;
+	}
+	return (1);
 }
 int is_palindrome(listint_t **head)
 {
@@ -45,13 +46,16 @@ int is_palindrome(listint_t **head)
 	secondHalf = reverse_list(slow);
 	palindrome = compare_lists(*head, secondHalf);
 	secondHalf = reverse_list(secondHalf);
-	if (midNode != NULL) {
-        prev_slow->next = midNode;
-        midNode->next = secondHalf;
-    } else {
-        prev_slow->next = secondHalf;
-    }
+	if (midNode != NULL)
+	{
+		prev_slow->next = midNode;
+		midNode->next = secondHalf;
+	}
+	else 
+	{
+		prev_slow->next = secondHalf;
+	}
 
-    return palindrome;
+	return (palindrome);
 }
    
