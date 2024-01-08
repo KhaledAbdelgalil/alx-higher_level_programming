@@ -1,8 +1,8 @@
 #include "lists.h"
 
-listint_t* reverse_list(listint_t * list)
+void reverse_list(listint_t **list)
 {
-	listint_t* prev = NULL, *current = list, *nextNode = NULL;
+	listint_t* prev = NULL, *current = *list, *nextNode = NULL;
 	while (current)
 	{
 		nextNode = current->next;
@@ -10,7 +10,7 @@ listint_t* reverse_list(listint_t * list)
 		prev = current;
 		current = nextNode;
 	}
-	return (prev);
+	*list = prev;
 }
 int compare_lists(listint_t* list1, listint_t* list2) {
 	while (list1 != NULL && list2 != NULL)
@@ -43,10 +43,10 @@ int is_palindrome(listint_t **head)
 		midNode = slow;
 		slow = slow->next;
 	}
-	secondHalf = reverse_list(slow);
+	reverse_list(&slow);
 	palindrome = compare_lists(*head, secondHalf);
 	/*secondHalf = */
-	reverse_list(secondHalf);
+	reverse_list(&secondHalf);
 	if (midNode != NULL)
 	{
 		prev_slow->next = midNode;
