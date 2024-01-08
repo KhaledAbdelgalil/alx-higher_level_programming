@@ -44,6 +44,7 @@ int is_palindrome(listint_t **head)
 		slow = slow->next;
 	}
 	reverse_list(&slow);
+	secondHalf = slow;
 	palindrome = compare_lists(*head, secondHalf);
 	/*secondHalf = */
 	reverse_list(&secondHalf);
