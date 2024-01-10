@@ -32,7 +32,7 @@ void print_python_list(PyObject *p)
         long int size = PyList_Size(p);
         int i;
         PyListObject *list = (PyListObject *)p;
-        char *type, *compared_str = "bytes";
+        const char *type;
 
         printf("[*] Python list info\n");
         printf("[*] Size of the Python List = %li\n", size);
@@ -41,7 +41,7 @@ void print_python_list(PyObject *p)
         {
                 type = (list->ob_item[i])->ob_type->tp_name;
 		printf("Element %i: %s\n", i, type);
-                if (strcmp(type, compared_str) == 0)
+                if (!strcmp(type, "bytes"))
                         print_python_bytes(list->ob_item[i]);
         }
 }
