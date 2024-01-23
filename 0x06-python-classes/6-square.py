@@ -41,8 +41,8 @@ class Square:
             print("")
 
         for i in range(self.__size):
-            [print(" ", end="") for j in range(0, self.__position[0])]
-            [print("#", end="") for j in range(self.__size)]
+            [print(" ", end="") for j in range(self.__position[0])]
+            [print("#", end="") for k in range(self.__size)]
             print("")
 
     @property
@@ -66,7 +66,9 @@ class Square:
             return False
         cond = all(isinstance(coord, int) and coord >= 0 for coord in position)
         '''print(condition)'''
-        return cond
+        if not cond:
+            return False
+        return True
 
 
 '''
