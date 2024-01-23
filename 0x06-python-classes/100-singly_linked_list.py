@@ -60,6 +60,7 @@ class SinglyLinkedList:
             temp = temp.next_node
         return '\n'.join(map(str, data))
 
+
 '''
 sll = SinglyLinkedList()
 sll.sorted_insert(2)
