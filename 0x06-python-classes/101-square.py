@@ -49,7 +49,6 @@ class Square:
             [print("#", end="") for k in range(0, self.__size)]
             print("")
 
-
     def __str__(self):
         if self.__size != 0:
             [print("") for i in range(0, self.__position[1])]
@@ -58,11 +57,3 @@ class Square:
             [print("#", end="") for k in range(0, self.__size)]
             print("")
         return ("")
-
-my_square = Square(5, (0, 0))
-print(my_square)
-
-print("--")
-
-my_square = Square(5, (4, 1))
-print(my_square)
