@@ -42,4 +42,4 @@ class Square:
 
 '''
 Square(3).my_print()
-Square().my_print()''' 
+Square().my_print()'''
