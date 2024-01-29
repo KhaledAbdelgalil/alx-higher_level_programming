@@ -53,7 +53,7 @@ class Rectangle:
 
         rect_str = []
         for i in range(self.height):
-            [rect_str.append(str(Rectangle.print_symbol)) for j in range(self.width)]
+            [rect_str.append(str(self.print_symbol)) for j in range(self.width)]
             if i != self.height - 1:
                 rect_str.append("\n")
         return ("".join(rect_str))
@@ -67,3 +67,27 @@ class Rectangle:
     def __del__(self):
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
+
+my_rectangle_1 = Rectangle(8, 4)
+print(my_rectangle_1)
+print("--")
+my_rectangle_1.print_symbol = "&"
+print(my_rectangle_1)
+print("--")
+
+my_rectangle_2 = Rectangle(2, 1)
+print(my_rectangle_2)
+print("--")
+Rectangle.print_symbol = "C"
+print(my_rectangle_2)
+print("--")
+
+my_rectangle_3 = Rectangle(7, 3)
+print(my_rectangle_3)
+
+print("--")
+
+my_rectangle_3.print_symbol = ["C", "is", "fun!"]
+print(my_rectangle_3)
+
+print("--")
