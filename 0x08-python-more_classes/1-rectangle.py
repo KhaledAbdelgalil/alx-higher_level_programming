@@ -4,7 +4,7 @@
 """Defines a class Rectangle."""
 
 
-class Square:
+class Rectangle:
     """Represents a Rectangle."""
 
     def __init__(self, width=0, height=0):
