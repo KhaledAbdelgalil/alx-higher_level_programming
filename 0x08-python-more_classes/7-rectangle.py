@@ -51,12 +51,12 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ("")
 
-        rect_str = []
+        rec = []
         for i in range(self.height):
-            [rect_str.append(str(self.print_symbol)) for j in range(self.width)]
+            [rec.append(str(self.print_symbol)) for j in range(self.width)]
             if i != self.height - 1:
-                rect_str.append("\n")
-        return ("".join(rect_str))
+                rec.append("\n")
+        return ("".join(rec))
 
     def __repr__(self):
         rect_str = "Rectangle("
@@ -67,6 +67,7 @@ class Rectangle:
     def __del__(self):
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
+
 
 '''
 my_rectangle_1 = Rectangle(8, 4)
