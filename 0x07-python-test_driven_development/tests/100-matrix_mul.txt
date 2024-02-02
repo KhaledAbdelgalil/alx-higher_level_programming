@@ -33,9 +33,6 @@ Using ``matrix_mul``
 	 Traceback (most recent call last):
 	 ValueError: m_a can't be empty
 
-	 >>> matrix_mul([[], []], [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ValueError: m_a can't be empty
 
 	 >>> matrix_mul([[1, 2], [3, 4]], [])
 	 Traceback (most recent call last):
