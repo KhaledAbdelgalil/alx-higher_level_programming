@@ -21,7 +21,5 @@ def class_to_json(obj):
         # For example, if value is a set, convert it to a list
         elif isinstance(value, set):
             obj_dict[key] = list(value)
-        # Add any other custom serializations for other complex types if necessary
-        # ...
 
     return obj_dict
