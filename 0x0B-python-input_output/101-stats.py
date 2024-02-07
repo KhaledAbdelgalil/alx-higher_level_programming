@@ -1,15 +1,10 @@
 #!/usr/bin/python3
-"""
-Task: 101-stats
-Write a function that returns
-the number of lines in a text file
-By Khaled Mansour
-"""
+"""this module for stats"""
 
 
 def print_metrics(size, status_codes):
     """
-    Display the current file size and count of status codes.
+    Print accumulated metrics
     """
     print("File size: {}".format(size))
     for key in sorted(status_codes):
