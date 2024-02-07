@@ -5,48 +5,58 @@ Write a function that returns
 the number of lines in a text file
 By Khaled Mansour
 """
-import sys
-import signal
-
-# Initialize a dictionary to hold the status codes and total size
-# Possible status codes
-status_codes = {str(code): 0 for code in [200, 301,
-                                          400, 401, 403, 404, 405, 500]}
-total_size = 0  # Total size of all files
-line_count = 0  # Line count
 
 
-def print_stats():
-    """Prints the statistics of status codes and total file size."""
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes.keys(), key=int):
-        if status_codes[code] > 0:
-            print("{}: {}".format(code, status_codes[code]))
+def print_metrics(accumulated_size, status_code_counts):
+    """
+    Display the current file size and count of status codes.
+    """
+    print("Total file size: {}".format(accumulated_size))
+    # Print the count for each status code in ascending order
+    for key in sorted(status_code_counts):
+        print("Status code {}: {}".format(key, status_code_counts[key]))
 
 
-def signal_handler(signum, frame):
-    """Signal handler for SIGINT (CTRL + C)."""
-    print_stats()
-    sys.exit(0)
+if __name__ == "__main__":
+    import sys
 
+    # Initialize the total size and a dictionary for status code counts
+    total_size = 0
+    status_code_counts = {}
+    # List of valid HTTP status codes to track
+    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    line_counter = 0
 
-# Register the signal handler for SIGINT (CTRL + C)
-signal.signal(signal.SIGINT, signal_handler)
+    try:
+        for line in sys.stdin:
+            # Every 10 lines, print the metrics
+            if line_counter == 10:
+                print_metrics(total_size, status_code_counts)
+                line_counter = 1
+            else:
+                line_counter += 1
 
-try:
-    for line in sys.stdin:
-        parts = line.split()
-        status_code = parts[-2]
-        file_size = int(parts[-1])
+            # Split the line into parts to process status code and size
+            parts = line.split()
 
-        if status_code in status_codes:
-            status_codes[status_code] += 1
-            total_size += file_size
+            # Safely convert and add the file size
+            try:
+                total_size += int(parts[-1])
+            except (IndexError, ValueError):
+                pass  # If there's an error, skip adding the size
 
-        line_count += 1
-        if line_count % 10 == 0:
-            print_stats()
+            # Check for a valid status code and increment its count
+            try:
+                if parts[-2] in valid_codes:
+                    status_code_counts[
+                        parts[-2]] = status_code_counts.get(parts[-2], 0) + 1
+            except IndexError:
+                pass  # If there's an error, skip counting the status code
 
-except KeyboardInterrupt:
-    print_stats()
-    raise
+        # Print the final metrics after processing all lines
+        print_metrics(total_size, status_code_counts)
+
+    except KeyboardInterrupt:
+        # Handle Ctrl+C interruption and print the metrics gathered so far
+        print_metrics(total_size, status_code_counts)
+        raise
