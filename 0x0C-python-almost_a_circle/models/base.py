@@ -2,6 +2,7 @@
 
 """Defines a base model class."""
 
+
 class Base:
     """Base model.
 
