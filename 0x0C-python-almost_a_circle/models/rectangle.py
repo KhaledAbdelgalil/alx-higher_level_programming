@@ -7,11 +7,12 @@ class Rectangle(Base):
     """Represent a rectangle."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
+        
 
     @property
     def width(self):
@@ -81,6 +82,7 @@ class Rectangle(Base):
                                                        self.width, self.height)
 
     def update(self, *args, **kwargs):
+
         if args and len(args) != 0:
             arg_idx = 0
             for arg in args:
