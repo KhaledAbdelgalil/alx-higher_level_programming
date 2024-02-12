@@ -11,7 +11,10 @@ class Square(Rectangle):
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        """Return a string that describes the square's dimensions and position."""
+        """
+        Return a string that describes
+        the square's dimensions and position
+        """
         # Format the output string to display square's details
         return ("[Square] ({unique_id}) {axis_x}/{axis_y} - {dimension}"
                 .format(unique_id=self.id, axis_x=self.x,
