@@ -32,11 +32,12 @@ class Base:
         if not dict_list:
             return "[]"
         return dumpsOfJson(dict_list)
-    
+
     @classmethod
     def save_to_file(cls, entities):
         """
-        Writes the JSON string of a list of instances to a file named after the class.
+        Writes the JSON string of a list of
+        instances to a file named after the class.
         """
         # Construct the filename from the class name
         filename = cls.__name__ + ".json"
@@ -47,7 +48,8 @@ class Base:
                 file_handle.write("[]")
             else:
                 # Convert each instance to its dictionary form
-                entity_dicts = [instance.to_dictionary() for instance in entities]
+                entity_dicts = [instance.to_dictionary()
+                                for instance in entities]
                 # Serialize the list of dictionaries to a
                 # JSON string and write to the file
                 file_handle.write(Base.to_json_string(entity_dicts))
@@ -69,7 +71,6 @@ class Base:
         from models.rectangle import Rectangle
         from models.square import Square
 
-        
         if cls is Rectangle:
             instance = Rectangle(1, 1)
         elif cls is Square:
@@ -93,15 +94,15 @@ class Base:
             return instances
         except FileNotFoundError:
             return []
-        
+
     @classmethod
     def save_to_file_csv(cls, objects_list):
         """Export a CSV file representing a list of class instances."""
 
         # Attribute keys for Rectangle and Square
-        rectangle_attributes = ("id", "width", "height", "x", "y")
-        square_attributes = ("id", "size", "x", "y")
-        
+        rectangle_attrs = ("id", "width", "height", "x", "y")
+        square_attrs = ("id", "size", "x", "y")
+
         # Get class name of the instances
         class_name = cls.__name__
 
@@ -117,21 +118,22 @@ class Base:
             # Extract attribute values in the correct order
             instance_values = []
             instance_keys = instance_dict.keys()
-            for attribute in square_attributes if class_name == "Square" else rectangle_attributes:
+            attrs = square_attrs if class_name == "Square" else rectangle_attrs
+            for attribute in attrs:
                 if attribute in instance_keys:
                     instance_values.append(str(instance_dict[attribute]))
             if instance_values:
                 csv_data.append(instance_values)
 
         # Write CSV data to a file
-        with open(f"{class_name}.csv", "w") as csv_file:
+        csv_filename = f"{class_name}.csv"
+        with open(csv_filename, "w") as csv_file:
             # Write headers and rows if there are objects
             if objects_list:
                 # Write appropriate headers based on the class
-                if class_name == "Square":
-                    csv_file.write(",".join(square_attributes) + "\n")
-                elif class_name == "Rectangle":
-                    csv_file.write(",".join(rectangle_attributes) + "\n")
+                attrs = square_attrs if class_name == \
+                    "Square" else rectangle_attrs
+                csv_file.write(",".join(attrs) + "\n")
                 # Write each instance's CSV data
                 for row in csv_data:
                     csv_file.write(",".join(row) + "\n")
@@ -154,7 +156,8 @@ class Base:
                     if "id" in line:
                         continue
                     # Create an instance of the class
-                    instance = cls(1) if class_identifier == "Square" else cls(1, 1)
+                    instance = cls(1)if class_identifier == "Square" else cls(
+                        1, 1)
                     # Update the instance with data from the CSV line
                     instance.update(*map(int, line.split(",")))
                     # Append the instance to the list
@@ -194,9 +197,9 @@ class Base:
 
             # Position the turtle at the shape's starting coordinates
             drawer.penup()
-            drawer.setpos((shape.x + drawer.pos()[0],
-                        shape.y - drawer.pos()[1]))
-            
+            drawer.setpos((
+                shape.x + drawer.pos()[0], shape.y - drawer.pos()[1]))
+
             drawer.pensize(10)  # Set drawing pen size
             drawer.pendown()  # Begin drawing
 
@@ -214,4 +217,3 @@ class Base:
 
         # Display the window for a brief period before exit
         time.sleep(5)
-
