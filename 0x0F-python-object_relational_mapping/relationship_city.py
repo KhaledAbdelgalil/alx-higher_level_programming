@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """
-Contains City class and Base, an instance of declarative_base()
+Contains the class definition of a City
 """
 from relationship_state import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
-
 class City(Base):
     """
-    Class defines City
+    Class that defines each city
     """
     __tablename__ = 'cities'
     id = Column(Integer, unique=True, nullable=False, primary_key=True)
