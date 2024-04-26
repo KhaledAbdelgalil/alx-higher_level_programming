@@ -1,3 +1,3 @@
 #!/bin/bash
-# Get the byte size of response body for a given URL.
+# Bash script that takes in a URL then sends a request, and displays the size of the body of the response
 curl -s "$1" | wc -c
