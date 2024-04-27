@@ -11,5 +11,8 @@ if __name__ == "__main__":
                                                               sys.argv[1])
     response = requests.get(url)
     for i in range(10):
-        print(response.json()[i].get("sha"), end=": ")
-        print(response.json()[i].get("commit").get("author").get("name"))
+        try:
+            print(response.json()[i].get("sha"), end=": ")
+            print(response.json()[i].get("commit").get("author").get("name"))
+        except IndexError:
+            pass
