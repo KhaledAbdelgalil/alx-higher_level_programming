@@ -7,5 +7,5 @@ if __name__ == '__main__':
     import sys
 
     req = request.Request(sys.argv[1])
-    with req.urlopen(req) as res:
+    with request.urlopen(req) as res:
         print(dict(res.headers)["X-Request-Id"])
