@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Python script that fetches an URL
+Python script that fetches an URL header
 """
 
 
