@@ -17,7 +17,11 @@ function printCharacters(characters){
           if (error) {
             console.log(error);
           }
+          fun();
           console.log(JSON.parse(bodyCharacter).name);
         });
       }
+}
+function fun(){
+    
 }
