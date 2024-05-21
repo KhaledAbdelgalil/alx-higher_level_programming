@@ -8,20 +8,14 @@ request.get(url, function (error, res, body) {
   }
   const films = JSON.parse(body);
   const characters = films.characters;
-  printCharacters(characters);
+  printCharacters(characters, 0);
 });
 
-function printCharacters(characters){
-    for (const characterUrl of characters) {
-        request.get(characterUrl, function (error, res, bodyCharacter) {
-          if (error) {
-            console.log(error);
-          }
-          fun();
-          console.log(JSON.parse(bodyCharacter).name);
-        });
-      }
-}
-function fun(){
-    
+function printCharacters (characters, index) {
+  request(characters[index], function (error, res, bodyCharacter) {
+    if (!error) {
+      console.log(JSON.parse(bodyCharacter).name);
+      if (index + 1 < characters.length) { printCharacters(characters, index + 1); }
+    }
+  });
 }
