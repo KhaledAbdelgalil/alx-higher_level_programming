@@ -8,12 +8,16 @@ request.get(url, function (error, res, body) {
   }
   const films = JSON.parse(body);
   const characters = films.characters;
-  for (const characterUrl of characters) {
-    request.get(characterUrl, function (error, res, bodyCharacter) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(JSON.parse(bodyCharacter).name);
-    });
-  }
+  printCharacters(characters);
 });
+
+function printCharacters(characters){
+    for (const characterUrl of characters) {
+        request.get(characterUrl, function (error, res, bodyCharacter) {
+          if (error) {
+            console.log(error);
+          }
+          console.log(JSON.parse(bodyCharacter).name);
+        });
+      }
+}
